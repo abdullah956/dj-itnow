@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
-
+from .models import Category
 
 def index(request):
-    return render(request, 'index.html')
+    categories = Category.objects.all()
+    return render(request, 'index.html', {'categories': categories})
 
 def register_user(request):
     if request.method == 'POST':

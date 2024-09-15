@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import UserChangeForm, UserCreationForm
-from .models import User
+from .models import User, Category, Product
 
 class CustomUserAdmin(UserAdmin):
     form = UserChangeForm
@@ -24,3 +24,5 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Category)
+admin.site.register(Product)

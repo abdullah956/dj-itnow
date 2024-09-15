@@ -72,53 +72,30 @@
 
       <!-- Banner -->
       <div class="banner">
-        <div class="row">
-          <div class="col text-center mb-5">
+     <div class="row">
+        <div class="col text-center mb-5">
             <div class="section_title new_arrivals_title">
-              <h2>Our Categories</h2>
+                <h2>Our Categories</h2>
             </div>
-          </div>
         </div>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-4 mb-5">
-              <div class="banner_item align-items-center" style="background-image:url('{% static 'images/banner_1.jpg' %}')">
-                <div class="banner_category">
-                  <a href="categories.html">women's</a>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for category in categories %}
+                <div class="col-md-4 mb-5">
+                    <div class="banner_item align-items-center" style="background-image:url('{{ category.image.url }}')">
+                        <div class="banner_category">
+                            <a href="categories.html">{{ category.name }}</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-5">
-              <div class="banner_item align-items-center" style="background-image:url('{% static 'images/slider_3.jpg' %}')">
-                <div class="banner_category">
-                  <a href="categories.html">accessories</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-5">
-              <div class="banner_item align-items-center" style="background-image:url('{% static 'images/banner_3.jpg' %}')">
-                <div class="banner_category">
-                  <a href="categories.html">men's</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-5">
-              <div class="banner_item align-items-center" style="background-image:url('{% static 'images/banner_3.jpg' %}')">
-                <div class="banner_category">
-                  <a href="categories.html">men's</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-5">
-              <div class="banner_item align-items-center" style="background-image:url('{% static 'images/banner_3.jpg' %}')">
-                <div class="banner_category">
-                  <a href="categories.html">men's</a>
-                </div>
-              </div>
-            </div>
-          </div>
+            {% empty %}
+                <p>No categories available.</p>
+            {% endfor %}
         </div>
-      </div>
+    </div>
+</div>
+
 
       <!-- New Arrivals -->
 <div class="new_arrivals mt-5">
