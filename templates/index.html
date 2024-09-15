@@ -85,7 +85,7 @@
                 <div class="col-md-4 mb-5">
                     <div class="banner_item align-items-center" style="background-image:url('{{ category.image.url }}')">
                         <div class="banner_category">
-                            <a href="categories.html">{{ category.name }}</a>
+                             <a href="{% url 'category_products' category.id %}">{{ category.name }}</a>
                         </div>
                     </div>
                 </div>

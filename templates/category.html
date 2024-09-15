@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <title>Colo Shop Categories</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Colo Shop Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}" />
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/jquery-ui-1.12.1.custom/jquery-ui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/categories_styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/categories_responsive.css' %}" />
+    <style>
+      /* Ensure the product-grid uses Flexbox */
+      .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Space between items */
+      }
+      
+      /* Style for product-item to fit in a grid */
+      .product-item {
+        flex: 1 1 calc(25% - 20px); /* Adjust percentage based on the number of items per row */
+        box-sizing: border-box;
+        margin-bottom: 20px; /* Space below each item */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="super_container">
+      <!-- Header -->
+      {% include 'header.html' %}
+
+      <div class="container product_section_container">
+        <div class="row">
+          <div class="col product_section clearfix">
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+              <ul>
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                  <a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Shop</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Sidebar -->
+
+            <div class="sidebar">
+              <div class="sidebar_section">
+                <div class="sidebar_title">
+                  <h5>Product Category</h5>
+                </div>
+                <ul class="sidebar_categories">
+                  <li>
+                    <a href="#">Men</a>
+                  </li>
+                  <li class="active">
+                    <a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a>
+                  </li>
+                  <li>
+                    <a href="#">Accessories</a>
+                  </li>
+                  <li>
+                    <a href="#">New Arrivals</a>
+                  </li>
+                  <li>
+                    <a href="#">Collection</a>
+                  </li>
+                  <li>
+                    <a href="#">Shop</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Main Content -->
+
+            <div class="main_content">
+              <!-- Products -->
+
+              <div class="products_iso">
+                <div class="row">
+                  <div class="col">
+                    <!-- Product Grid -->
+
+                    <div class="product-grid">
+                      <!-- Loop through each product -->
+                      {% for product in products %}
+                        <div class="product-item {{ product.category }}">
+                          <div class="product discount product_filter">
+                            <div class="product_image">
+                              <!-- Display product image -->
+                              <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                            </div>
+
+                            <div class="product_info">
+                              <!-- Display product name and link -->
+                              <h6 class="product_name"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h6>
+                              <!-- Display product price -->
+                              <div class="product_price">
+                                ${{ product.price }}{% if product.discount_price %}
+                                  <span>${{ product.discount_price }}</span>
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="red_button add_to_cart_button">
+                            <!-- Add to cart button -->
+                            <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+                          </div>
+                        </div>
+                      {% endfor %}
+
+                      <!-- Product Sorting -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefit -->
+
+      <div class="benefit">
+        <div class="container">
+          <div class="row benefit_row">
+            <div class="col-lg-3 benefit_col">
+              <div class="benefit_item d-flex flex-row align-items-center">
+                <div class="benefit_icon">
+                  <i class="fa fa-truck" aria-hidden="true"></i>
+                </div>
+                <div class="benefit_content">
+                  <h6>free shipping</h6>
+                  <p>Suffered Alteration in Some Form</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+              <div class="benefit_item d-flex flex-row align-items-center">
+                <div class="benefit_icon">
+                  <i class="fa fa-money" aria-hidden="true"></i>
+                </div>
+                <div class="benefit_content">
+                  <h6>cach on delivery</h6>
+                  <p>The Internet Tend To Repeat</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+              <div class="benefit_item d-flex flex-row align-items-center">
+                <div class="benefit_icon">
+                  <i class="fa fa-undo" aria-hidden="true"></i>
+                </div>
+                <div class="benefit_content">
+                  <h6>45 days return</h6>
+                  <p>Making it Look Like Readable</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+              <div class="benefit_item d-flex flex-row align-items-center">
+                <div class="benefit_icon">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <div class="benefit_content">
+                  <h6>opening all week</h6>
+                  <p>8AM - 09PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+
+      {% include 'footer.html' %}
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+    <script src="{% static 'plugins/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/contact_custom.js' %}"></script>
+  </body>
+</html>

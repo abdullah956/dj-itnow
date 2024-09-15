@@ -160,3 +160,9 @@ def contact_view(request):
             return redirect('contact_view')
     
     return render(request, 'contact.html')
+
+
+def category_products_view(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    products = Product.objects.filter(category=category)
+    return render(request, 'category.html', {'category': category, 'products': products})
