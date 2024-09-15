@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Category , Product , Cart
+from .models import Category , Product , Cart , Order
 from decimal import Decimal
+import json
 
 def index(request):
     categories = Category.objects.all()
@@ -88,3 +89,38 @@ def cart_view(request):
         'total': grand_total,
     }
     return render(request, 'cart.html', context)
+
+
+
+def checkout_view(request):
+    if request.method == 'POST':
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip')
+        payment_method = request.POST.get('payment_method')
+        order = Order(
+            user=request.user,
+            fullname=fullname,
+            email=email,
+            address=address,
+            city=city,
+            state=state,
+            zip_code=zip_code,
+            payment_method=payment_method,
+            products=get_cart_products(request.user)
+        )
+        order.save()
+        
+        return redirect('index')
+
+    return render(request, 'checkout.html')
+
+def get_cart_products(user):
+    cart_items = Cart.objects.filter(user=user)
+    products = {}
+    for item in cart_items:
+        products[item.product.id] = item.quantity
+    return json.dumps(products)

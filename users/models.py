@@ -42,3 +42,24 @@ class Cart(BasedModel):
     
     def __str__(self):
         return f"{self.product.name}x{self.quantity} in {self.user.email}'s cart"
+    
+
+
+class Order(models.Model):
+    PAYMENT_METHOD_CHOICES = [
+        ('card', 'Card Payment'),
+        ('cash', 'Cash on Delivery'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    fullname = models.CharField(max_length=255)
+    email = models.EmailField()
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=20)
+    payment_method = models.CharField(max_length=10, choices=PAYMENT_METHOD_CHOICES, default='card')
+    products = models.JSONField() 
+
+    def __str__(self):
+        return f"Order by {self.fullname} ({self.email})"
