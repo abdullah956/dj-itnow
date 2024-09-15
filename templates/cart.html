@@ -201,46 +201,44 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <img src="{% static 'images/bags.png' %}" alt="Product Name" />
-                </td>
-                <td>Sample Product</td>
-                <td>$10.00</td>
-                <td>2</td>
-                <td>$20.00</td>
-                <td>
-                  <button class="remove-btn" onclick="removeItem(this)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="{% static 'images/bags.png' %}" alt="Product Name" />
-                </td>
-                <td>Sample Product</td>
-                <td>$10.00</td>
-                <td>2</td>
-                <td>$20.00</td>
-                <td>
-                  <button class="remove-btn" onclick="removeItem(this)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-              </tr>
+              {% for entry in items_with_totals %}
+                <tr>
+                  <td>
+                    {% if entry.item.product.image %}
+                      <img src="{{ entry.item.product.image.url }}" alt="{{ entry.item.product.name }}" />
+                    {% else %}
+                      <img src="{% static 'images/default.png' %}" alt="No Image Available" />
+                    {% endif %}
+                  </td>
+                  <td>{{ entry.item.product.name }}</td>
+                  <td>${{ entry.item.product.price }}</td>
+                  <td>{{ entry.item.quantity }}</td>
+                  <td>${{ entry.item_total }}</td>
+                  <td>
+                    <button class="remove-btn" onclick="removeItem(this)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="6">Your cart is empty.</td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
 
-          <!-- New Billing Summary Section -->
+          <!-- Billing Summary Section -->
           <div class="billing-summary">
             <div class="subtotal">
               <span class="label">Subtotal:</span>
-              <span class="value">$45.00</span> <!-- Example subtotal, replace dynamically -->
+              <span class="value">${{ subtotal }}</span>
             </div>
             <div class="shipping">
               <span class="label">Shipping Charges:</span>
-              <span class="value">$5.00</span>
+              <span class="value">${{ shipping }}</span>
             </div>
             <div class="total">
               <span class="label">Total:</span>
-              <span class="value">$50.00</span> <!-- Example total, calculate dynamically -->
+              <span class="value">${{ total }}</span>
             </div>
             <button class="checkout-btn">Proceed to Checkout</button>
           </div>

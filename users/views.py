@@ -3,6 +3,7 @@ from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Category , Product , Cart
+from decimal import Decimal
 
 def index(request):
     categories = Category.objects.all()
@@ -59,3 +60,31 @@ def add_to_cart(request):
             cart_item.save()
         
         return redirect('product_detail', product_id=product_id)
+    
+
+
+def cart_view(request):
+    user_cart_items = Cart.objects.filter(user=request.user)
+    
+    total_price = Decimal('0.00')
+    shipping_cost = Decimal('5.00')
+
+    items_with_totals = []
+    
+    for item in user_cart_items:
+        item_total = item.product.price * Decimal(item.quantity)
+        total_price += item_total
+        items_with_totals.append({
+            'item': item,
+            'item_total': item_total
+        })
+    
+    grand_total = total_price + shipping_cost
+    
+    context = {
+        'items_with_totals': items_with_totals,
+        'subtotal': total_price,
+        'shipping': shipping_cost,
+        'total': grand_total,
+    }
+    return render(request, 'cart.html', context)
