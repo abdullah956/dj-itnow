@@ -111,77 +111,28 @@
         <div class="row">
             <div class="col">
                 <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-
-                    <div class="product-item women">
+                    {% for product in featured_products %}
+                    <div class="product-item {{ product.category.name|lower }}">
                         <div class="product product_filter">
                             <div class="product_image">
-                                <img src="{% static 'images/product_2.png' %}" alt="">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
                             <div class="product_info">
-                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-                                <div class="product_price">$610.00</div>
+                                <h6 class="product_name"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h6>
+                                <div class="product_price">${{ product.price }}</div>
                             </div>
                         </div>
                         <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
                     </div>
-
-                    <div class="product-item accessories">
-                        <div class="product product_filter">
-                            <div class="product_image">
-                                <img src="{% static 'images/product_4.png' %}" alt="">
-                            </div>
-                            <div class="product_info">
-                                <h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-                                <div class="product_price">$410.00</div>
-                            </div>
-                        </div>
-                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                    </div>
-
-                    <div class="product-item women men">
-                        <div class="product product_filter">
-                            <div class="product_image">
-                                <img src="{% static 'images/product_5.png' %}" alt="">
-                            </div>
-                            <div class="product_info">
-                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-                                <div class="product_price">$180.00</div>
-                            </div>
-                        </div>
-                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                    </div>
-
-                    <div class="product-item accessories">
-                        <div class="product discount product_filter">
-                            <div class="product_image">
-                                <img src="{% static 'images/product_6.png' %}" alt="">
-                            </div>
-                            <div class="product_info">
-                                <h6 class="product_name"><a href="#single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                <div class="product_price">$520.00<span>$590.00</span></div>
-                            </div>
-                        </div>
-                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                    </div>
-
-                    <div class="product-item women">
-                        <div class="product product_filter">
-                            <div class="product_image">
-                                <img src="{% static 'images/product_7.png' %}" alt="">
-                            </div>
-                            <div class="product_info">
-                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-                                <div class="product_price">$610.00</div>
-                            </div>
-                        </div>
-                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                    </div>
-
+                    {% empty %}
+                    <p>No featured products available.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
       <!-- Deal of the week -->

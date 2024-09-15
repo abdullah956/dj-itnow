@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Category
+from .models import Category , Product
 
 def index(request):
     categories = Category.objects.all()
-    return render(request, 'index.html', {'categories': categories})
+    featured_products = Product.objects.filter(is_featured=True)
+    return render(request, 'index.html', {'categories': categories,'featured_products': featured_products})
 
 def register_user(request):
     if request.method == 'POST':
@@ -36,3 +37,8 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+def product_detail_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'product.html', {'product': product})
