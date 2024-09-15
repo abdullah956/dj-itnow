@@ -45,7 +45,7 @@ class Cart(BasedModel):
     
 
 
-class Order(models.Model):
+class Order(BasedModel):
     PAYMENT_METHOD_CHOICES = [
         ('card', 'Card Payment'),
         ('cash', 'Cash on Delivery'),
@@ -63,3 +63,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order by {self.fullname} ({self.email})"
+    
+
+class ContactMessage(BasedModel):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return f"Message from {self.name} ({self.email})"

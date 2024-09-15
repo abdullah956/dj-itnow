@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Category , Product , Cart , Order
+from .models import Category , Product , Cart , Order , ContactMessage
 from decimal import Decimal
 import json
 from django.contrib import messages
@@ -133,8 +133,7 @@ def shop_view(request):
     products = Product.objects.all()
     return render(request, 'shop.html', {'products': products})
 
-def contact_view(request):
-    return render(request, 'contact.html')
+
 
 def add_to_cart_byID(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -143,3 +142,21 @@ def add_to_cart_byID(request, product_id):
         cart.quantity += 1
         cart.save()
     return redirect('shop_view')
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        if name and email and message:
+            contact_message = ContactMessage(
+                name=name,
+                email=email,
+                message=message
+            )
+            contact_message.save()
+            return redirect('contact_view')
+    
+    return render(request, 'contact.html')
