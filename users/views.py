@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from .models import Category , Product , Cart , Order
 from decimal import Decimal
 import json
+from django.contrib import messages
 
 def index(request):
     categories = Category.objects.all()
@@ -101,6 +102,9 @@ def checkout_view(request):
         state = request.POST.get('state')
         zip_code = request.POST.get('zip')
         payment_method = request.POST.get('payment_method')
+        if payment_method == 'card':
+            messages.error(request, "Bank Payments are not yet supported.")
+            return render(request, 'checkout.html')
         order = Order(
             user=request.user,
             fullname=fullname,
@@ -131,8 +135,6 @@ def shop_view(request):
 
 def contact_view(request):
     return render(request, 'contact.html')
-
-
 
 def add_to_cart_byID(request, product_id):
     product = get_object_or_404(Product, id=product_id)

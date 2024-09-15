@@ -25,6 +25,7 @@
       {% include 'header.html' %}
 
       <div class="container contact_container">
+
         <div class="row">
           <div class="col">
             <!-- Breadcrumbs -->
@@ -47,6 +48,13 @@
         <style>
           /* Example of minimal custom styling */
         </style>
+        {% if messages %}
+          <div class="alert alert-info">
+            {% for message in messages %}
+              <div>{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
 
         <div class="container mt-5">
           <!-- Checkout Form Section -->
@@ -91,11 +99,7 @@
                     <h5 class="card-title">Payment Method</h5>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="payment_method" id="card" value="card" checked />
-                      <label class="form-check-label" for="card">Card Payment</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="payment_method" id="cash" value="cash" />
-                      <label class="form-check-label" for="cash">Cash on Delivery</label>
+                      <label class="form-check-label" for="card">Bank Transfer</label>
                     </div>
                   </div>
                   <div class="card-footer">
