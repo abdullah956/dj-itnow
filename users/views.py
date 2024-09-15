@@ -124,3 +124,20 @@ def get_cart_products(user):
     for item in cart_items:
         products[item.product.id] = item.quantity
     return json.dumps(products)
+
+def shop_view(request):
+    products = Product.objects.all()
+    return render(request, 'shop.html', {'products': products})
+
+def contact_view(request):
+    return render(request, 'contact.html')
+
+
+
+def add_to_cart_byID(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user, product=product)
+    if not created:
+        cart.quantity += 1
+        cart.save()
+    return redirect('shop_view')
