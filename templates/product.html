@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/jquery-ui-1.12.1.custom/jquery-ui.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'styles/single_styles.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'styles/single_responsive.css' %}" />
+
+
   </head>
 
   <body>
@@ -94,8 +96,8 @@
                   {% csrf_token %}
                   <input type="hidden" name="product_id" value="{{ product.id }}" />
                   <input type="hidden" name="quantity" id="quantity_input" value="1" />
-                  <div class="red_button add_to_cart_button">
-                    <button type="submit">add to cart</button>
+                  <div class=" add_to_cart_button">
+                    <button type="submit" class="btn btn-danger" >add to cart</button>
                   </div>
                 </form>
                 <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>

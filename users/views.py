@@ -61,7 +61,7 @@ def add_to_cart(request):
             cart_item.quantity += quantity
             cart_item.save()
         
-        return redirect('product_detail', product_id=product_id)
+        return redirect('cart_view')
     
 
 
@@ -103,7 +103,7 @@ def checkout_view(request):
         zip_code = request.POST.get('zip')
         payment_method = request.POST.get('payment_method')
         if payment_method == 'card':
-            messages.error(request, "Bank Payments are not yet supported.")
+            messages.error(request, "Connection Error Occured")
             return render(request, 'checkout.html')
         order = Order(
             user=request.user,
@@ -141,7 +141,7 @@ def add_to_cart_byID(request, product_id):
     if not created:
         cart.quantity += 1
         cart.save()
-    return redirect('shop_view')
+    return redirect('cart_view')
 
 
 def contact_view(request):
@@ -166,3 +166,4 @@ def category_products_view(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     products = Product.objects.filter(category=category)
     return render(request, 'category.html', {'category': category, 'products': products})
+

@@ -29,6 +29,14 @@
         box-sizing: border-box;
         margin-bottom: 20px; /* Space below each item */
       }
+
+      .product_image img {
+        width: 100%; /* Adjust the width as needed */
+        height: 200px; /* Maintain aspect ratio */
+        max-width: 200px; /* Fixed width, adjust as needed */
+        max-height: 200px; /* Fixed height, adjust as needed */
+        object-fit: cover; /* Ensures the image covers the area */
+      }
     </style>
   </head>
 
@@ -92,11 +100,11 @@
                   <div class="col">
                     <!-- Product Grid -->
 
-                    <div class="product-grid">
+                    <div class="product-grid" >
                       <!-- Loop through each product -->
                       {% for product in products %}
-                        <div class="product-item {{ product.category }}">
-                          <div class="product discount product_filter">
+                        <div class="product-item {{ product.category }}" style="max-width: 200px;" >
+                          <div class="product" style="width: 200px;"">
                             <div class="product_image">
                               <!-- Display product image -->
                               <img src="{{ product.image.url }}" alt="{{ product.name }}" />
