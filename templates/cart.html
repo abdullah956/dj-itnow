@@ -215,7 +215,10 @@
                   <td>{{ entry.item.quantity }}</td>
                   <td>${{ entry.item_total }}</td>
                   <td>
-                    <button class="remove-btn" onclick="removeItem(this)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <form action="{% url 'remove-item' entry.item.id %}" method="POST" style="display:inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="remove-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
                   </td>
                 </tr>
               {% empty %}

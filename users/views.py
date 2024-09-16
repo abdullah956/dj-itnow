@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from django.db.models import Sum
 from .forms import UserRegistrationForm
 from django.contrib.auth import login , logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -167,3 +169,18 @@ def category_products_view(request, category_id):
     products = Product.objects.filter(category=category)
     return render(request, 'category.html', {'category': category, 'products': products})
 
+
+def remove_item_from_cart(request, item_id):
+    cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
+    
+    if request.method == 'POST':
+        cart_item.delete()
+        messages.success(request, 'Item removed from the cart.')
+        return redirect('cart_view')  
+    
+    return redirect('cart_view') 
+
+
+def cart_item_count(request):
+    total_items = Cart.objects.filter(user=request.user).aggregate(total=Sum('quantity'))['total'] or 0
+    return JsonResponse({'total_items': total_items})

@@ -99,7 +99,7 @@
               <li class="checkout">
                 <a href="{% url 'cart_view'%}">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  {% comment %} <span id="checkout_items" class="checkout_items">2</span> {% endcomment %}
+                  <span id="checkout_items" class="checkout_items">2</span>
                 </a>
               </li>
             </ul>
@@ -160,3 +160,16 @@
     }
   })
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch the total cart item count when the page loads
+    fetch('{% url 'cart-item-count' %}')
+        .then(response => response.json())
+        .then(data => {
+            // Update the span with the total number of items
+            document.getElementById('checkout_items').textContent = data.total_items;
+        })
+        .catch(error => console.error('Error fetching cart item count:', error));
+});
+</script>
+
