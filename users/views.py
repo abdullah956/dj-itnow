@@ -138,6 +138,7 @@ def shop_view(request):
 
 
 
+@login_required(login_url='/login/')
 def add_to_cart_byID(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user, product=product)
