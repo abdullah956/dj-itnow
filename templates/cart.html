@@ -211,9 +211,9 @@
                     {% endif %}
                   </td>
                   <td>{{ entry.item.product.name }}</td>
-                  <td>${{ entry.item.product.price }}</td>
+                  <td>€{{ entry.item.product.price }}</td>
                   <td>{{ entry.item.quantity }}</td>
-                  <td>${{ entry.item_total }}</td>
+                  <td>€{{ entry.item_total }}</td>
                   <td>
                     <form action="{% url 'remove-item' entry.item.id %}" method="POST" style="display:inline;">
                       {% csrf_token %}
@@ -233,15 +233,15 @@
           <div class="billing-summary">
             <div class="subtotal">
               <span class="label">Subtotal:</span>
-              <span class="value">${{ subtotal }}</span>
+              <span class="value">€{{ subtotal }}</span>
             </div>
             <div class="shipping">
               <span class="label">Shipping Charges:</span>
-              <span class="value">${{ shipping }}</span>
+              <span class="value">€{{ shipping }}</span>
             </div>
             <div class="total">
               <span class="label">Total:</span>
-              <span class="value">${{ total }}</span>
+              <span class="value">€{{ total }}</span>
             </div>
             <a href="{% url 'checkout_view' %}" class="checkout-btn"><center>Proceed to Checkout</center></a>
           </div>

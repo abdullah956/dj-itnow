@@ -115,8 +115,8 @@
                               <h6 class="product_name"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h6>
                               <!-- Display product price -->
                               <div class="product_price">
-                                ${{ product.price }}{% if product.discount_price %}
-                                  <span>${{ product.discount_price }}</span>
+                                €{{ product.price }}{% if product.discount_price %}
+                                  <span>€{{ product.discount_price }}</span>
                                 {% endif %}
                               </div>
                             </div>
