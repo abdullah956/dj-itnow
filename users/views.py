@@ -8,6 +8,7 @@ from .models import Category , Product , Cart , Order , ContactMessage
 from decimal import Decimal
 import json
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     categories = Category.objects.all()
@@ -66,7 +67,7 @@ def add_to_cart(request):
         return redirect('cart_view')
     
 
-
+@login_required(login_url='/login/')
 def cart_view(request):
     user_cart_items = Cart.objects.filter(user=request.user)
     
