@@ -1,3 +1,4 @@
+{% load static %}
 <header class="header trans_300">
   <!-- Top Navigation -->
 
@@ -19,16 +20,25 @@
                 </a>
                 <ul class="account_selection">
                   {% if user.is_authenticated %}
-                    <li>
-                      <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
-                    </li>
+                  <li>
+                    <a href="{% url 'logout' %}"
+                      ><i class="fa fa-sign-out" aria-hidden="true"></i
+                      >Logout</a
+                    >
+                  </li>
                   {% else %}
-                    <li>
-                      <a href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'register_user' %}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
-                    </li>
+                  <li>
+                    <a href="{% url 'login' %}"
+                      ><i class="fa fa-sign-in" aria-hidden="true"></i>Sign
+                      In</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'register_user' %}"
+                      ><i class="fa fa-user-plus" aria-hidden="true"></i
+                      >Register</a
+                    >
+                  </li>
                   {% endif %}
                 </ul>
               </li>
@@ -40,12 +50,23 @@
   </div>
 
   <!-- Main Navigation -->
+  <style>
+    #language_selector {
+      width: 50px;
+      border: none;
+      outline: none;
+      background-color: rgb(255, 255, 255);
+    }
+    #language_selector option {
+      background-color: #f9f5f5;
+    }
+  </style>
 
   <style>
     .navbar_user {
       position: relative;
     }
-    
+
     .search-box-container {
       position: absolute;
       right: 0;
@@ -60,7 +81,7 @@
       z-index: 1000;
       /* Ensure it's above other content */
     }
-    
+
     .search-box-input {
       width: 100%;
       padding: 8px;
@@ -75,7 +96,7 @@
       <div class="row">
         <div class="col-lg-12 text-right">
           <div class="logo_container">
-            <a href="#">Shop<span>It</span>Now</a>
+            <a href="#" style="font-size: 24px;"  >Shop<span>It</span>Now</a>
           </div>
           <nav class="navbar">
             <ul class="navbar_menu">
@@ -88,50 +109,47 @@
               <li>
                 <a href="{% url 'contact_view'%}">contact</a>
               </li>
-                            <!-- Google Translate Language Selector -->
-                            <style>
-                              #language_selector{
-                                width: 50px;
-                                border: none;
-                                outline: none;
-                                background-color: rgb(255, 255, 255);
-                                
-                              }
-                              #language_selector option{
-                                background-color: #f9f5f5;
-                              }
-                             </style>
-                            <li>
-                              <select id="language_selector" onchange="changeLanguageByButtonClick();">
-                                <option value="en">English</option>
-                                <option value="fr">French</option>
-                                <option value="es">Spanish</option>
-                                <option value="nl">Nederlandse</option>
-                                <option value="ar">Arabic</option>
-                                <option value="de">Deutsch</option>
-                                <option value="it">Italiano</option>
-                                <option value="sv">Swedish</option>
-                                <option value="ru">Russian</option>
-                                <option value="pt">Portuguese</option>
-                              </select>
-                            </li>
-                          </ul>
-              
-                          <!-- Google Translate Element (Hidden) -->
-                          <div id="google_translate_element" style="display:none;"></div>
-              
-                          <!-- Custom CSS to Hide Google Translate Toolbar -->
-                          <style>
-                            body > .skiptranslate {
-                              display: none !important;
-                            }
-                          </style>
+              <!-- Google Translate Language Selector -->
+
+              <li>
+                <select
+                  id="language_selector"
+                  onchange="changeLanguageByButtonClick();"
+                >
+                  <option value="en">English</option>
+                  <option value="fr">French</option>
+                  <option value="es">Spanish</option>
+                  <option value="nl">Nederlandse</option>
+                  <option value="ar">Arabic</option>
+                  <option value="de">Deutsch</option>
+                  <option value="it">Italiano</option>
+                  <option value="sv">Swedish</option>
+                  <option value="ru">Russian</option>
+                  <option value="pt">Portuguese</option>
+                </select>
+              </li>
+
+              <!-- Google Translate Element (Hidden) -->
+              <div id="google_translate_element" style="display: none"></div>
+
+              <!-- Custom CSS to Hide Google Translate Toolbar -->
+              <style>
+                body > .skiptranslate {
+                  display: none !important;
+                }
+              </style>
             </ul>
             <ul class="navbar_user">
               <li>
-                <a href="" id="search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
-                <div class="search-box-container" style="display: none;">
-                  <input type="text" class="search-box-input" placeholder="Search..." />
+                <a href="" id="search-trigger"
+                  ><i class="fa fa-search" aria-hidden="true"></i
+                ></a>
+                <div class="search-box-container" style="display: none">
+                  <input
+                    type="text"
+                    class="search-box-input"
+                    placeholder="Search..."
+                  />
                 </div>
               </li>
               <li class="checkout">
@@ -165,10 +183,14 @@
         </a>
         <ul class="menu_selection">
           <li>
-            <a href=""><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a>
+            <a href=""
+              ><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a
+            >
           </li>
           <li>
-            <a href="{% url 'register_user' %}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+            <a href="{% url 'register_user' %}"
+              ><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a
+            >
           </li>
         </ul>
       </li>
@@ -181,92 +203,102 @@
       <li class="menu_item">
         <a href="#">contact</a>
       </li>
-                    <!-- Google Translate Language Selector -->
-                    <style>
-                      #language_selector{
-                        width: 50px;
-                        border: none;
-                        outline: none;
-                        background-color: rgb(255, 255, 255);
-                        
-                      }
-                      #language_selector option{
-                        background-color: #f9f5f5;
-                      }
-                     </style>
-                    <li>
-                      <select id="language_selector" onchange="changeLanguageByButtonClick();">
-                        <option value="">LAN</option>
-                        <option value="en">English</option>
-                        <option value="fr">French</option>
-                        <option value="es">Spanish</option>
-                        <option value="nl">Nederlandse</option>
-                        <option value="ar">Arabic</option>
-                        <option value="de">Deutsch</option>
-                        <option value="it">Italiano</option>
-                        <option value="sv">Swedish</option>
-                        <option value="ru">Russian</option>
-                        <option value="pt">Portuguese</option>
-                      </select>
-                    </li>
-                  </ul>
-      
-                  <!-- Google Translate Element (Hidden) -->
-                  <div id="google_translate_element" style="display:none;"></div>
-      
-                  <!-- Custom CSS to Hide Google Translate Toolbar -->
-                  <style>
-                    body > .skiptranslate {
-                      display: none !important;
-                    }
-                  </style>
+      <!-- Google Translate Language Selector -->
+      {% for category in categories %}
+
+      <li class="menu_item">
+        <a href="{% url 'category_products' category.id %}">{{ category.name }}</a>
+      </li>
+      {% endfor %}
+
+      <li>
+        <select
+          id="language_selector"
+          onchange="changeLanguageByButtonClick();"
+        >
+          <option value="">LAN</option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="es">Spanish</option>
+          <option value="nl">Nederlandse</option>
+          <option value="ar">Arabic</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="sv">Swedish</option>
+          <option value="ru">Russian</option>
+          <option value="pt">Portuguese</option>
+        </select>
+      </li>
+
+      <!-- Google Translate Element (Hidden) -->
+      <div id="google_translate_element" style="display: none"></div>
+
+      <!-- Custom CSS to Hide Google Translate Toolbar -->
+      <style>
+        body > .skiptranslate {
+          display: none !important;
+        }
+      </style>
     </ul>
   </div>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
- <!-- Google Translate Script -->
- <script type="text/javascript">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<!-- Google Translate Script -->
+<script type="text/javascript">
   function googleTranslateElementInit() {
-    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element')
+    new google.translate.TranslateElement(
+      { pageLanguage: "en" },
+      "google_translate_element"
+    );
   }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script
+  type="text/javascript"
+  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
 
 <!-- Script to Change Language -->
 <script>
   function changeLanguageByButtonClick() {
-    var language = document.getElementById('language_selector').value
+    var language = document.getElementById("language_selector").value;
     if (language) {
-      var selectField = document.querySelector('.goog-te-combo')
+      var selectField = document.querySelector(".goog-te-combo");
       if (selectField) {
-        selectField.value = language
-        selectField.dispatchEvent(new Event('change'))
+        selectField.value = language;
+        selectField.dispatchEvent(new Event("change"));
       }
     }
   }
 </script>
 <script>
-  document.getElementById('search-trigger').addEventListener('click', function (event) {
-    event.preventDefault() // Prevent the default anchor behavior
-    var searchBox = document.querySelector('.search-box-container')
-    if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-      searchBox.style.display = 'block'
-    } else {
-      searchBox.style.display = 'none'
-    }
-  })
+  document
+    .getElementById("search-trigger")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the default anchor behavior
+      var searchBox = document.querySelector(".search-box-container");
+      if (
+        searchBox.style.display === "none" ||
+        searchBox.style.display === ""
+      ) {
+        searchBox.style.display = "block";
+      } else {
+        searchBox.style.display = "none";
+      }
+    });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Fetch the total cart item count when the page loads
-    fetch('{% url 'cart-item-count' %}')
-        .then(response => response.json())
-        .then(data => {
-            // Update the span with the total number of items
-            document.getElementById('checkout_items').textContent = data.total_items;
-        })
-        .catch(error => console.error('Error fetching cart item count:', error));
-});
+  document.addEventListener('DOMContentLoaded', function() {
+      // Fetch the total cart item count when the page loads
+      fetch('{% url 'cart-item-count' %}')
+          .then(response => response.json())
+          .then(data => {
+              // Update the span with the total number of items
+              document.getElementById('checkout_items').textContent = data.total_items;
+          })
+          .catch(error => console.error('Error fetching cart item count:', error));
+  });
 </script>
-

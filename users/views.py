@@ -134,6 +134,7 @@ def get_cart_products(user):
 
 def shop_view(request):
     products = Product.objects.all()
+    
     return render(request, 'shop.html', {'products': products})
 
 

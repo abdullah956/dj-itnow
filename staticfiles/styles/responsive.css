@@ -153,7 +153,7 @@
 	}
 	.banner_item
 	{
-		height: 160px;
+		height: 260px;
 	}
 	.banner_category
 	{
@@ -313,7 +313,7 @@
 	.banner_item
 	{
 		margin-bottom: 30px;
-		height: 210px;
+		height: 250px;
 	}
 	.new_arrivals_title
 	{
@@ -381,6 +381,9 @@
 	{
 		height: 380px;
 	}
+
+	
+	
 	.blog_item
 	{
 		height: calc((100vw - 30px) / 1.37);
@@ -433,7 +436,7 @@
 {
 	.logo_container a
 	{
-		font-size: 12px;
+		font-size: 24px;
 	}
 	.hamburger_container
 	{
@@ -516,7 +519,7 @@
 	}
 	.banner_item
 	{
-		height: calc((100vw - 30px) / 2.6);
+		height: 500px;
 	}
 	.grid_sorting_button
 	{
@@ -684,5 +687,13 @@
 
 @media only screen and (max-width: 400px)
 {
+	.logo_container a{
+		font-size: 30px;
+	}
+
+	.banner_item
+	{
+		height: 550px;
+	}
 	
 }
